@@ -6,13 +6,13 @@
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Aiming"
 
-[sub_resource type="AnimationNodeBlend2" id=10]
-
-[sub_resource type="AnimationNodeBlend2" id=11]
-
 [sub_resource type="AnimationNodeBlend2" id=2]
 filter_enabled = true
 filters = [ "Armature/Skeleton:arm.L", "Armature/Skeleton:arm.R", "Armature/Skeleton:body", "Armature/Skeleton:forearm.L", "Armature/Skeleton:forearm.R", "Armature/Skeleton:head" ]
+
+[sub_resource type="AnimationNodeBlend2" id=10]
+
+[sub_resource type="AnimationNodeBlend2" id=11]
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Falling-loop"
@@ -26,7 +26,7 @@ animation = "Idle-loop"
 [sub_resource type="AnimationNodeAnimation" id=13]
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Jumping"
+animation = "JumpingStretch"
 
 [sub_resource type="AnimationNodeOneShot" id=14]
 
@@ -34,7 +34,7 @@ animation = "Jumping"
 animation = "Run-loop"
 
 [sub_resource type="AnimationNodeTransition" id=4]
-input_count = 5
+input_count = 4
 xfade_time = 0.15
 input_0/name = "Running"
 input_0/auto_advance = false
@@ -44,22 +44,20 @@ input_2/name = "Jumping"
 input_2/auto_advance = false
 input_3/name = "Falling"
 input_3/auto_advance = false
-input_4/name = "Idling"
-input_4/auto_advance = false
 
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Strafe-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -793.549, -139.028 )
+graph_offset = Vector2( -696.883, -127.917 )
 nodes/Aiming/node = SubResource( 1 )
 nodes/Aiming/position = Vector2( -244.444, 244.444 )
-nodes/Blend2/node = SubResource( 2 )
-nodes/Blend2/position = Vector2( 22.2222, 0 )
-"nodes/Blend2 2/node" = SubResource( 10 )
-"nodes/Blend2 2/position" = Vector2( -577.778, -222.222 )
-"nodes/Blend2 3/node" = SubResource( 11 )
-"nodes/Blend2 3/position" = Vector2( -577.778, 44.4444 )
+nodes/BlendAim/node = SubResource( 2 )
+nodes/BlendAim/position = Vector2( 22.2222, 0 )
+nodes/BlendRunning/node = SubResource( 10 )
+nodes/BlendRunning/position = Vector2( -577.778, -222.222 )
+nodes/BlendStraffing/node = SubResource( 11 )
+nodes/BlendStraffing/position = Vector2( -577.778, 44.4444 )
 nodes/Falling/node = SubResource( 7 )
 nodes/Falling/position = Vector2( -577.778, 377.778 )
 nodes/IdleBreak/node = SubResource( 12 )
@@ -79,7 +77,7 @@ nodes/State/position = Vector2( -244.444, 0 )
 nodes/Straffing/node = SubResource( 9 )
 nodes/Straffing/position = Vector2( -888.889, 177.778 )
 nodes/output/position = Vector2( 422.222, 0 )
-node_connections = [ "output", 0, "OnIdleBreak", "Blend2", 0, "State", "Blend2", 1, "Aiming", "Blend2 3", 0, "Idling_straff", "Blend2 3", 1, "Straffing", "Blend2 2", 0, "Idling_run", "Blend2 2", 1, "Running", "State", 0, "Blend2 2", "State", 1, "Blend2 3", "State", 2, "Jumping", "State", 3, "Falling", "OnIdleBreak", 0, "Blend2", "OnIdleBreak", 1, "IdleBreak" ]
+node_connections = [ "output", 0, "OnIdleBreak", "BlendStraffing", 0, "Idling_straff", "BlendStraffing", 1, "Straffing", "BlendRunning", 0, "Idling_run", "BlendRunning", 1, "Running", "BlendAim", 0, "State", "BlendAim", 1, "Aiming", "OnIdleBreak", 0, "BlendAim", "OnIdleBreak", 1, "IdleBreak", "State", 0, "BlendRunning", "State", 1, "BlendStraffing", "State", 2, "Jumping", "State", 3, "Falling" ]
 
 [node name="IcySkin" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -91,8 +89,8 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Blend2/blend_amount = 0.0
-"parameters/Blend2 2/blend_amount" = 0.0
-"parameters/Blend2 3/blend_amount" = 0
+parameters/BlendAim/blend_amount = 0.0
+parameters/BlendRunning/blend_amount = 0.0
+parameters/BlendStraffing/blend_amount = 0
 parameters/OnIdleBreak/active = false
 parameters/State/current = 0
