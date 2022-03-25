@@ -1,79 +1,85 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://characters/icy.glb" type="PackedScene" id=1]
 [ext_resource path="res://characters/PlayerSkin.gd" type="Script" id=2]
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Aiming"
+
+[sub_resource type="AnimationNodeBlend2" id=10]
+
+[sub_resource type="AnimationNodeBlend2" id=11]
+
+[sub_resource type="AnimationNodeBlend2" id=2]
+filter_enabled = true
+filters = [ "Armature/Skeleton:arm.L", "Armature/Skeleton:arm.R", "Armature/Skeleton:body", "Armature/Skeleton:forearm.L", "Armature/Skeleton:forearm.R", "Armature/Skeleton:head" ]
+
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Falling-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Idle-break"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Idle-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=13]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Jumping"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeOneShot" id=14]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Run-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeTransition" id=4]
+input_count = 5
+xfade_time = 0.15
+input_0/name = "Running"
+input_0/auto_advance = false
+input_1/name = "Strafing"
+input_1/auto_advance = false
+input_2/name = "Jumping"
+input_2/auto_advance = false
+input_3/name = "Falling"
+input_3/auto_advance = false
+input_4/name = "Idling"
+input_4/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Strafe-loop"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-advance_condition = "is_moving"
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-advance_condition = "is_idle"
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-switch_mode = 2
-advance_condition = "is_moving_or_idling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-advance_condition = "is_moving"
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-advance_condition = "is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachine" id=27]
-states/Falling/node = SubResource( 29 )
-states/Falling/position = Vector2( 455, -20 )
-states/Idle-break/node = SubResource( 24 )
-states/Idle-break/position = Vector2( 243, 267 )
-states/Idle-loop/node = SubResource( 8 )
-states/Idle-loop/position = Vector2( 235, 159 )
-states/Jumping/node = SubResource( 9 )
-states/Jumping/position = Vector2( 235, -20 )
-states/Run-loop/node = SubResource( 10 )
-states/Run-loop/position = Vector2( 586, 150 )
-states/Strafe-loop/node = SubResource( 11 )
-states/Strafe-loop/position = Vector2( 591, 303 )
-transitions = [ "Idle-loop", "Strafe-loop", SubResource( 12 ), "Strafe-loop", "Idle-loop", SubResource( 13 ), "Idle-loop", "Run-loop", SubResource( 14 ), "Run-loop", "Idle-loop", SubResource( 15 ), "Run-loop", "Strafe-loop", SubResource( 20 ), "Strafe-loop", "Run-loop", SubResource( 21 ), "Idle-loop", "Idle-break", SubResource( 25 ), "Idle-break", "Idle-loop", SubResource( 26 ), "Falling", "Run-loop", SubResource( 31 ), "Falling", "Idle-loop", SubResource( 32 ), "Idle-loop", "Falling", SubResource( 33 ), "Run-loop", "Falling", SubResource( 34 ) ]
-start_node = "Idle-loop"
-graph_offset = Vector2( -158, -53 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[sub_resource type="AnimationNodeBlendTree" id=5]
+graph_offset = Vector2( -793.549, -139.028 )
+nodes/Aiming/node = SubResource( 1 )
+nodes/Aiming/position = Vector2( -244.444, 244.444 )
+nodes/Blend2/node = SubResource( 2 )
+nodes/Blend2/position = Vector2( 22.2222, 0 )
+"nodes/Blend2 2/node" = SubResource( 10 )
+"nodes/Blend2 2/position" = Vector2( -577.778, -222.222 )
+"nodes/Blend2 3/node" = SubResource( 11 )
+"nodes/Blend2 3/position" = Vector2( -577.778, 44.4444 )
+nodes/Falling/node = SubResource( 7 )
+nodes/Falling/position = Vector2( -577.778, 377.778 )
+nodes/IdleBreak/node = SubResource( 12 )
+nodes/IdleBreak/position = Vector2( -244.444, 400 )
+nodes/Idling_run/node = SubResource( 6 )
+nodes/Idling_run/position = Vector2( -888.889, -200 )
+nodes/Idling_straff/node = SubResource( 13 )
+nodes/Idling_straff/position = Vector2( -888.889, 66.6667 )
+nodes/Jumping/node = SubResource( 8 )
+nodes/Jumping/position = Vector2( -577.778, 244.444 )
+nodes/OnIdleBreak/node = SubResource( 14 )
+nodes/OnIdleBreak/position = Vector2( 244.444, 0 )
+nodes/Running/node = SubResource( 3 )
+nodes/Running/position = Vector2( -888.889, -88.8889 )
+nodes/State/node = SubResource( 4 )
+nodes/State/position = Vector2( -244.444, 0 )
+nodes/Straffing/node = SubResource( 9 )
+nodes/Straffing/position = Vector2( -888.889, 177.778 )
+nodes/output/position = Vector2( 422.222, 0 )
+node_connections = [ "output", 0, "OnIdleBreak", "Blend2", 0, "State", "Blend2", 1, "Aiming", "Blend2 3", 0, "Idling_straff", "Blend2 3", 1, "Straffing", "Blend2 2", 0, "Idling_run", "Blend2 2", 1, "Running", "State", 0, "Blend2 2", "State", 1, "Blend2 3", "State", 2, "Jumping", "State", 3, "Falling", "OnIdleBreak", 0, "Blend2", "OnIdleBreak", 1, "IdleBreak" ]
 
 [node name="IcySkin" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -82,10 +88,11 @@ script = ExtResource( 2 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource( 27 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 28 )
-parameters/conditions/is_idle = false
-parameters/conditions/is_moving = false
-parameters/conditions/is_moving_or_idling = false
+parameters/Blend2/blend_amount = 0.0
+"parameters/Blend2 2/blend_amount" = 0.0
+"parameters/Blend2 3/blend_amount" = 0
+parameters/OnIdleBreak/active = false
+parameters/State/current = 0
