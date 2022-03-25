@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	_tree["parameters/conditions/is_idle"] = _is_idle
 	_tree["parameters/conditions/is_moving_or_idling"] = _is_idle or is_moving
 	var fall_list = ["Run-loop", "Jumping"] if auto_fall else ["Jumping"]
-	if _playback.get_current_node() == "Falling" and is_equal_approx(velocity.y, 0.0):
-		_playback.travel("Idle-loop") 
-	elif velocity.y < 0.0 and _playback.get_current_node() in fall_list:
+	if velocity.y < 0.0 and _playback.get_current_node() in fall_list:
 		_playback.travel("Falling")
+	elif _playback.get_current_node() == "Falling" and is_equal_approx(velocity.y, 0.0):
+		_playback.travel("Idle-loop")  
 	
 		# NOTE: Idle-loop switches immediately to Run-loop if is_moving==true
 		# TODO: try to replace with is_falling:
