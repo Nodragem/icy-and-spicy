@@ -24,6 +24,7 @@ animation = "Idle-break"
 animation = "Idle-loop"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Idle-loop"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "JumpingStretch"
@@ -49,7 +50,7 @@ input_3/auto_advance = false
 animation = "Strafe-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -696.883, -127.917 )
+graph_offset = Vector2( -1105.06, -217.917 )
 nodes/Aiming/node = SubResource( 1 )
 nodes/Aiming/position = Vector2( -244.444, 244.444 )
 nodes/BlendAim/node = SubResource( 2 )
@@ -91,6 +92,6 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/BlendAim/blend_amount = 0.0
 parameters/BlendRunning/blend_amount = 0.0
-parameters/BlendStraffing/blend_amount = 0
+parameters/BlendStraffing/blend_amount = 0.0
 parameters/OnIdleBreak/active = false
 parameters/State/current = 0

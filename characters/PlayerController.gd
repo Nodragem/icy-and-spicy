@@ -1,4 +1,4 @@
-class_name BasePlayerPlatformer3D
+class_name PlayerController
 extends KinematicBody
 
 export var move_speed := 6.0
@@ -35,7 +35,7 @@ func apply_base_movement(delta: float) -> void:
 	if _move_direction.length() > 0.2:
 		_last_strong_direction = _move_direction.normalized()
 	# to use _last_strong_direction also make sure we have a default value to start with
-	_orient_character_to_direction(_last_strong_direction, delta)
+	_orient_model_to_direction(_last_strong_direction, delta)
 
 	# We separate out the y velocity to not interpolate on the gravity
 	var y_velocity := _velocity.y
@@ -82,7 +82,7 @@ func _get_player_input() -> Vector3:
 	input = _camera_controller.global_transform.basis.xform(input)
 	return input
 
-func _orient_character_to_direction(direction: Vector3, delta: float) -> void:
+func _orient_model_to_direction(direction: Vector3, delta: float) -> void:
 	var left_axis := Vector3.UP.cross(direction)
 	var rotation_basis := Basis(left_axis, Vector3.UP, direction)\
 	.orthonormalized()

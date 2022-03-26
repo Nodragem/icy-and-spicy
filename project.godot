@@ -10,18 +10,36 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody",
-"class": "BasePlayerPlatformer3D",
+"class": "PlayerController",
 "language": "GDScript",
-"path": "res://characters/CharacterControler.gd"
+"path": "res://characters/PlayerController.gd"
 }, {
 "base": "Spatial",
 "class": "PlayerSkin",
 "language": "GDScript",
 "path": "res://characters/PlayerSkin.gd"
+}, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://state_machine/PlayerState.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://state_machine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://state_machine/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"BasePlayerPlatformer3D": "",
-"PlayerSkin": ""
+"PlayerController": "",
+"PlayerSkin": "",
+"PlayerState": "",
+"State": "res://assets/2d/icons/state.svg",
+"StateMachine": "res://assets/2d/icons/state_machine.svg"
 }
 
 [application]
