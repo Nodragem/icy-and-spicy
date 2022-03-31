@@ -15,6 +15,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	yield(owner, "ready")
+	print("Entering initial state: "+state.name)
 	state.enter()
 
 func _unhandled_input(event: InputEvent) -> void:

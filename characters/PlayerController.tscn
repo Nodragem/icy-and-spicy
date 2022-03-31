@@ -2,7 +2,7 @@
 
 [ext_resource path="res://characters/IcySkin_inherited.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/PlayerController.gd" type="Script" id=2]
-[ext_resource path="res://characters/States/Air.gd" type="Script" id=3]
+[ext_resource path="res://characters/States/Jumping.gd" type="Script" id=3]
 [ext_resource path="res://characters/States/Run.gd" type="Script" id=4]
 [ext_resource path="res://characters/States/Move.gd" type="Script" id=5]
 [ext_resource path="res://scenes/default_env.tres" type="Environment" id=6]
@@ -42,6 +42,7 @@ color_use_laplace = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
+initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
@@ -52,5 +53,5 @@ script = ExtResource( 9 )
 [node name="Run" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 4 )
 
-[node name="Air" type="Node" parent="StateMachine/Move"]
+[node name="Jump" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 3 )

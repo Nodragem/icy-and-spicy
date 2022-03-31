@@ -5,9 +5,13 @@ extends State
 class_name PlayerState
 
 var player: PlayerController
-var skin: PlayerSkin
+var model: PlayerSkin
+var camera: Camera
+var anim_tree: AnimationTree
 
 func _ready() -> void:
 	yield(owner,"ready")
 	player = owner
-	skin = player.skin
+	model = player.model
+	camera = player.camera_controller
+	anim_tree = player.anim_tree
