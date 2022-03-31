@@ -4,19 +4,15 @@ export var jump_initial_impulse := 12.0
 export var jump_additional_force := 4.5
 
 func physics_process(delta: float) -> void:
-	pass
-	# _parent.physics_process(delta)
-	# if player._velocity.y <= 0:
-	# 	_state_machine.transition_to("Move/Falling")
+	_parent.physics_process(delta)
+	if _parent.velocity.y <= 0:
+		_state_machine.transition_to("Move/Fall")
 
 func enter(msg: = {}) -> void:
-	pass
-	# _parent.velocity.y = jump_initial_impulse
-	# _parent._snap = Vector3.ZERO
-	# skin.transition_to(skin.States.JUMPING)
-	# _parent.enter(msg)
+	_parent.velocity.y = jump_initial_impulse
+	_parent._snap = Vector3.ZERO
+	_parent.enter(msg)
 
 
 func exit() -> void:
-	pass
-	# _parent.exit()
+	_parent.exit()

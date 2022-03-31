@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://characters/IcySkin_inherited.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/PlayerController.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=7]
 [ext_resource path="res://state_machine/StateMachine.gd" type="Script" id=8]
 [ext_resource path="res://characters/States/Idle.gd" type="Script" id=9]
+[ext_resource path="res://characters/States/Falling.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.824618
@@ -55,3 +56,6 @@ script = ExtResource( 4 )
 
 [node name="Jump" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 3 )
+
+[node name="Fall" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 10 )

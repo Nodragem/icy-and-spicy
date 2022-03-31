@@ -13,9 +13,8 @@ var _snap := Vector3.DOWN * snap_length
 
 
 func unhandled_input(event: InputEvent) -> void:
-	pass
-	# if event.is_action_pressed("jump") and player.is_on_floor():
-	# 	_state_machine.transition_to("Move/Jumping", {velocity = velocity})
+	if event.is_action_pressed("jump") and player.is_on_floor():
+		_state_machine.transition_to("Move/Jump", {velocity = velocity})
 
 
 func physics_process(delta: float) -> void:

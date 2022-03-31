@@ -19,6 +19,10 @@ func update_animation(move_direction, velocity_ratio, delta) -> void:
 	anim_tree["parameters/blend_straffing/blend_amount"] = velocity_ratio
 
 
+func play_idle_break():
+	anim_tree["parameters/on_idle_break/active"] = true
+
+
 func _orient_model_to_direction(direction: Vector3, delta: float) -> void:
 	# METHOD 1:
 	# model.look_at(player.global_transform.origin +\
