@@ -28,7 +28,7 @@ func physics_process(delta: float) -> void:
 	
 	)
 	
-	model.update_animation(_move_direction, velocity.length() / max_speed, delta)
+	model.update_animation(_move_direction, velocity.length() / max_speed, velocity.y, delta)
 
 
 func _get_player_input() -> Vector3:
@@ -40,10 +40,9 @@ func _get_player_input() -> Vector3:
 		Input.get_action_strength("move_up")
 	)
 
-	if input.length() > 1.0:
-		input = input.normalized()
-	
 	input = camera.global_transform.basis.xform(input)
+	input.y = 0
+	input = input.normalized()
 	
 	return input
 

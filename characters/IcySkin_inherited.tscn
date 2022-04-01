@@ -50,7 +50,7 @@ input_3/auto_advance = false
 animation = "Strafe-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -715.34, -227.222 )
+graph_offset = Vector2( -715.34, -135.556 )
 nodes/aiming/node = SubResource( 1 )
 nodes/aiming/position = Vector2( -244.444, 244.444 )
 nodes/blend_aim/node = SubResource( 2 )

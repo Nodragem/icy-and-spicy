@@ -1,6 +1,6 @@
 extends PlayerState
 
-const IDLE_BREAK_WAIT_TIME := 1.0
+const IDLE_BREAK_WAIT_TIME := 2.0
 var _break_timer := Timer.new()
 
 func _ready() -> void:
@@ -20,12 +20,11 @@ func physics_process(delta: float) -> void:
 	_parent.physics_process(delta)
 	if player.is_on_floor() and _parent.velocity.length() > 0.01:
 		_state_machine.transition_to("Move/Run")
-	
-	# elif not player.is_on_floor():
-	# 	_state_machine.transition_to("Move/Air")
+
 
 func enter(msg: = {}) -> void:
 	_break_timer.start(IDLE_BREAK_WAIT_TIME)
+	model.move_to_running()
 	_parent.velocity = Vector3.ZERO
 	_parent.enter(msg)
 

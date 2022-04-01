@@ -1,6 +1,6 @@
 extends PlayerState
 
-export var jump_initial_impulse := 12.0
+export var jump_initial_impulse := 20.0
 export var jump_additional_force := 4.5
 
 func physics_process(delta: float) -> void:
@@ -11,6 +11,7 @@ func physics_process(delta: float) -> void:
 func enter(msg: = {}) -> void:
 	_parent.velocity.y = jump_initial_impulse
 	_parent._snap = Vector3.ZERO
+	model.move_to_jumping()
 	_parent.enter(msg)
 
 

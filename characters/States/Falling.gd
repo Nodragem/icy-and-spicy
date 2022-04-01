@@ -6,6 +6,7 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Idle")
 
 func enter(msg: = {}) -> void:
+	model.move_to_falling()
 	_parent.enter(msg)
 
 

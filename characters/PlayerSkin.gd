@@ -3,9 +3,9 @@ extends Spatial
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var anim_tree: AnimationTree = $AnimationTree
-var _last_strong_direction := Vector3.FORWARD
 export var rotation_speed := 12.0
 
+var _last_strong_direction := Vector3.FORWARD
 
 func _ready() -> void:
 	anim_tree.active = true
@@ -17,6 +17,18 @@ func update_animation(move_direction, velocity_ratio, delta) -> void:
 	_orient_model_to_direction(_last_strong_direction, delta)
 	anim_tree["parameters/blend_running/blend_amount"] = velocity_ratio
 	anim_tree["parameters/blend_straffing/blend_amount"] = velocity_ratio
+	
+
+func move_to_falling() -> void:
+	anim_tree["parameters/state/current"] = 3
+
+
+func move_to_jumping() -> void:
+	anim_tree["parameters/state/current"] = 2
+
+
+func move_to_running() -> void:
+	anim_tree["parameters/state/current"] = 0
 
 
 func play_idle_break(value: bool) -> void:
