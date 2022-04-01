@@ -1,6 +1,6 @@
 extends PlayerState
 
-export var max_speed: = 6.0
+export var max_speed: = 15.0
 export var acceleration:= 50
 export var gravity: = -30.0
 export var snap_length := 0.5
@@ -11,6 +11,9 @@ var velocity := Vector3.ZERO
 var _move_direction := Vector3.ZERO
 var _snap := Vector3.DOWN * snap_length
 
+var _player_input := Vector3.ZERO
+var _input_origin := Transform2D.IDENTITY #TODO
+
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and player.is_on_floor():
@@ -18,7 +21,10 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	_move_direction = _get_player_input()
+	_update_player_input()
+	
+	_move_direction.x = _player_input.x
+	_move_direction.z = _player_input.z
 	
 	_update_velocity(_move_direction, delta)
 	velocity = player.move_and_slide_with_snap(
@@ -31,20 +37,14 @@ func physics_process(delta: float) -> void:
 	model.update_animation(_move_direction, velocity.length() / max_speed, delta)
 
 
-func _get_player_input() -> Vector3:
-	var input = Vector3(
-		Input.get_action_strength("move_right") - 
-		Input.get_action_strength("move_left"),
-		0,
-		Input.get_action_strength("move_down") - 
-		Input.get_action_strength("move_up")
-	)
-
-	input = camera.global_transform.basis.xform(input)
-	input.y = 0
-	input = input.normalized()
+func _update_player_input():
+	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	_player_input = Vector3(input.x, 0, input.y)
 	
-	return input
+	_player_input = camera.global_transform.basis.xform(_player_input)
+	_player_input.y = 0
+	_player_input = _player_input.normalized()
+
 
 func _update_velocity(move_direction: Vector3, delta: float):
 	var y_velocity := velocity.y
