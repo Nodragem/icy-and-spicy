@@ -28,7 +28,7 @@ func physics_process(delta: float) -> void:
 	
 	)
 	
-	model.update_animation(_move_direction, velocity.length() / max_speed, velocity.y, delta)
+	model.update_animation(_move_direction, velocity.length() / max_speed, delta)
 
 
 func _get_player_input() -> Vector3:
