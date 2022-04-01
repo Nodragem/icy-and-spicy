@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_child(_break_timer)
 	_break_timer.wait_time = IDLE_BREAK_WAIT_TIME
 	_break_timer.one_shot = false
-	_break_timer.connect("timeout", model, "play_idle_break")
+	_break_timer.connect("timeout", model, "play_idle_break", [true])
 	
 
 func unhandled_input(event: InputEvent) -> void:
@@ -31,5 +31,6 @@ func enter(msg: = {}) -> void:
 
 
 func exit() -> void:
+	model.play_idle_break(false)
 	_break_timer.stop()
 	_parent.exit()
