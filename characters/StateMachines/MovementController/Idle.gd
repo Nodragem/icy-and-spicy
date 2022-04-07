@@ -5,7 +5,6 @@ var _break_timer := Timer.new()
 
 func _ready() -> void:
 	yield(owner, "ready")
-	print("Idle Ready")
 	add_child(_break_timer)
 	_break_timer.wait_time = IDLE_BREAK_WAIT_TIME
 	_break_timer.one_shot = false

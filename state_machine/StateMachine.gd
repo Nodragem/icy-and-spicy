@@ -12,10 +12,10 @@ var _state_name: = ""
 
 func _init() -> void:
 	add_to_group("state_machine")
+	DebugStats.add_property(self, "state:name", "")
 
 func _ready() -> void:
 	yield(owner, "ready")
-	print("Entering initial state: "+state.name)
 	state.enter()
 
 func _unhandled_input(event: InputEvent) -> void:

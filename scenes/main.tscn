@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://characters/PlayerController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tools/DebugStats.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/PlayerEntity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/prototype_arena.tscn" type="PackedScene" id=4]
 
 [node name="Spatial" type="Spatial"]
 
-[node name="PlayerController" parent="." instance=ExtResource( 2 )]
+[node name="PlayerEntity" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="ThirdPersonCamera" parent="PlayerEntity" index="1"]
+color_outline_scale = 2.0
+depth_outline_scale = 2.0
+depth_threshold = 0.302
+depth_multiplier = 30000.0
+edge_color = Color( 0.14902, 0.0196078, 0.105882, 1 )
+depth_use_laplace = false
+color_use_laplace = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.93285, -0.178857, -0.312732, -0.35771, 0.56305, 0.744996, 0.0428363, 0.806837, -0.58922, 0, 7.60584, -5.7794 )
@@ -17,4 +27,7 @@ shadow_color = Color( 0.313726, 0.054902, 0.054902, 1 )
 
 [node name="arena_ground" parent="." instance=ExtResource( 4 )]
 
-[editable path="PlayerController"]
+[node name="DebugStats" parent="." instance=ExtResource( 1 )]
+
+[editable path="PlayerEntity"]
+[editable path="PlayerEntity/IcySkin"]

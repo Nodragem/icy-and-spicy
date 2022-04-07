@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/default_env.tres" type="Environment" id=1]
-[ext_resource path="res://characters/PlayerController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/PlayerEntity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=3]
 
 [node name="Spatial" type="Spatial"]

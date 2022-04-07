@@ -50,11 +50,11 @@ input_3/auto_advance = false
 animation = "Strafe-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -715.34, -135.556 )
+graph_offset = Vector2( -676.466, -150.478 )
 nodes/aiming/node = SubResource( 1 )
-nodes/aiming/position = Vector2( -244.444, 244.444 )
+nodes/aiming/position = Vector2( 22.2222, 377.778 )
 nodes/blend_aim/node = SubResource( 2 )
-nodes/blend_aim/position = Vector2( 22.2222, 0 )
+nodes/blend_aim/position = Vector2( 222.222, 0 )
 nodes/blend_running/node = SubResource( 10 )
 nodes/blend_running/position = Vector2( -577.778, -222.222 )
 nodes/blend_straffing/node = SubResource( 11 )
@@ -62,7 +62,7 @@ nodes/blend_straffing/position = Vector2( -577.778, 44.4444 )
 nodes/falling/node = SubResource( 7 )
 nodes/falling/position = Vector2( -577.778, 377.778 )
 nodes/idle_break/node = SubResource( 12 )
-nodes/idle_break/position = Vector2( -244.444, 400 )
+nodes/idle_break/position = Vector2( -200, 377.778 )
 nodes/idling_run/node = SubResource( 6 )
 nodes/idling_run/position = Vector2( -888.889, -200 )
 nodes/idling_straff/node = SubResource( 13 )
@@ -70,7 +70,7 @@ nodes/idling_straff/position = Vector2( -888.889, 66.6667 )
 nodes/jumping/node = SubResource( 8 )
 nodes/jumping/position = Vector2( -577.778, 244.444 )
 nodes/on_idle_break/node = SubResource( 14 )
-nodes/on_idle_break/position = Vector2( 244.444, 0 )
+nodes/on_idle_break/position = Vector2( 0, 0 )
 nodes/output/position = Vector2( 422.222, 0 )
 nodes/running/node = SubResource( 3 )
 nodes/running/position = Vector2( -888.889, -88.8889 )
@@ -78,7 +78,7 @@ nodes/state/node = SubResource( 4 )
 nodes/state/position = Vector2( -244.444, 0 )
 nodes/straffing/node = SubResource( 9 )
 nodes/straffing/position = Vector2( -888.889, 177.778 )
-node_connections = [ "state", 0, "blend_running", "state", 1, "blend_straffing", "state", 2, "jumping", "state", 3, "falling", "output", 0, "on_idle_break", "blend_running", 0, "idling_run", "blend_running", 1, "running", "on_idle_break", 0, "blend_aim", "on_idle_break", 1, "idle_break", "blend_aim", 0, "state", "blend_aim", 1, "aiming", "blend_straffing", 0, "idling_straff", "blend_straffing", 1, "straffing" ]
+node_connections = [ "state", 0, "blend_running", "state", 1, "blend_straffing", "state", 2, "jumping", "state", 3, "falling", "output", 0, "blend_aim", "blend_aim", 0, "on_idle_break", "blend_aim", 1, "aiming", "blend_running", 0, "idling_run", "blend_running", 1, "running", "blend_straffing", 0, "idling_straff", "blend_straffing", 1, "straffing", "on_idle_break", 0, "state", "on_idle_break", 1, "idle_break" ]
 
 [node name="IcySkin" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -95,3 +95,6 @@ parameters/blend_running/blend_amount = 0.0
 parameters/blend_straffing/blend_amount = 0.0
 parameters/on_idle_break/active = false
 parameters/state/current = 0
+
+[node name="ShootAnchor" type="Position3D" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157497, 0.870186, 0.886708 )

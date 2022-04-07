@@ -3,6 +3,7 @@ extends Spatial
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var anim_tree: AnimationTree = $AnimationTree
+onready var shoot_anchor: Position3D = $ShootAnchor
 export var rotation_speed := 12.0
 
 var _last_strong_direction := Vector3.FORWARD
@@ -33,6 +34,13 @@ func move_to_running() -> void:
 
 func play_idle_break(value: bool) -> void:
 	anim_tree["parameters/on_idle_break/active"] = value
+	
+
+func play_aiming(value: bool) -> void:
+	if value:
+		anim_tree["parameters/blend_aim/blend_amount"] = 1
+	else:
+		anim_tree["parameters/blend_aim/blend_amount"] = 0
 
 
 func _orient_model_to_direction(direction: Vector3, delta: float) -> void:

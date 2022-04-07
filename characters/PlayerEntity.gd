@@ -1,9 +1,10 @@
-class_name PlayerController
+class_name PlayerEntity
 extends KinematicBody
 
 onready var camera_controller := $ThirdPersonCamera
 onready var model := $IcySkin
 onready var anim_tree := $IcySkin/AnimationTree
+onready var shoot_anchor := $IcySkin/ShootAnchor
 onready var start_position := global_transform.origin
 
 
