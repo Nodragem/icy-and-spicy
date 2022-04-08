@@ -10,11 +10,10 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="ThirdPersonCamera" parent="PlayerEntity" index="1"]
-color_outline_scale = 2.0
-depth_outline_scale = 2.0
+color_outline_scale = 0.0
+depth_outline_scale = 0.0
 depth_threshold = 0.302
 depth_multiplier = 30000.0
-edge_color = Color( 0.14902, 0.0196078, 0.105882, 1 )
 depth_use_laplace = false
 color_use_laplace = false
 

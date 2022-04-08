@@ -1,64 +1,77 @@
 [gd_scene load_steps=7 format=2]
 
-[sub_resource type="CubeMesh" id=1]
-
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 1.44821, 1, 1.62782 )
+extents = Vector3( 25, 2, 25 )
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 4, 2 )
 
 [sub_resource type="BoxShape" id=3]
+extents = Vector3( 25, 8, 1 )
 
 [sub_resource type="BoxShape" id=4]
+extents = Vector3( 27, 8, 1 )
 
 [sub_resource type="BoxShape" id=5]
+extents = Vector3( 25, 8, 1 )
 
 [sub_resource type="BoxShape" id=6]
+extents = Vector3( 27, 8, 1 )
 
-[node name="arena_ground" type="MeshInstance"]
-transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, -1, 0 )
-mesh = SubResource( 1 )
-material/0 = null
+[node name="StaticBody" type="StaticBody"]
 
-[node name="StaticBody" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
-transform = Transform( -4.72083e-08, 0, -0.04, 0, 4, 0, 1.08, 0, -1.74846e-09, 1.04, 3, -0.00295627 )
+[node name="arena_ground" type="MeshInstance" parent="CollisionShape"]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.96, 6, 0 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 4, 0, 0, 0, 0.04, 0, 3, -1.04296 )
+[node name="east_wall" type="MeshInstance" parent="CollisionShape2"]
+transform = Transform( 25, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -26.043 )
 shape = SubResource( 4 )
 
-[node name="CollisionShape5" type="CollisionShape" parent="StaticBody"]
-transform = Transform( -4.72083e-08, 0, -0.04, 0, 4, 0, 1.08, 0, -1.74846e-09, -1.04, 3, -0.00295636 )
+[node name="south_wall" type="MeshInstance" parent="CollisionShape3"]
+transform = Transform( 27, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.96, 6, 0 )
 shape = SubResource( 5 )
 
-[node name="CollisionShape4" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 4, 0, 0, 0, 0.04, 0, 3, 1.03704 )
+[node name="west_wall" type="MeshInstance" parent="CollisionShape5"]
+transform = Transform( 25, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 26.037 )
 shape = SubResource( 6 )
 
-[node name="north_wall" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 4, 0, 0, 0, 0.04, 0, 3, 1.03704 )
+[node name="north_wall" type="MeshInstance" parent="CollisionShape4"]
+transform = Transform( 27, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../../..")
 material/0 = null
 
-[node name="south_wall" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 4, 0, 0, 0, 0.04, 0, 3, -1.04296 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = null
-
-[node name="east_wall" type="MeshInstance" parent="."]
-transform = Transform( -4.72083e-08, 0, -0.04, 0, 4, 0, 1.08, 0, -1.74846e-09, 1.04, 3, -0.00295627 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = null
-
-[node name="west_wall" type="MeshInstance" parent="."]
-transform = Transform( -4.72083e-08, 0, -0.04, 0, 4, 0, 1.08, 0, -1.74846e-09, -1.04, 3, -0.00295636 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = null
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, -2, 12 )
+use_collision = true
+polygon = PoolVector2Array( 1, 2, 1, 14, 0, 4, 0, 2 )
+depth = 0.39
